@@ -11,14 +11,7 @@ class KartController @Autowired constructor(val kartRepository: KartRepository) 
 
     @RequestMapping("/user")
     fun greeting(@RequestParam(value = "username", defaultValue = "pwestlin") username: String, response: HttpServletResponse): User {
-        val user: User? = kartRepository.load(username)
-
-        if (user == null) {
-            throw NotFoundException("User $username not found")
-        }
-
-        return user
-
+        return kartRepository.load(username) ?: throw NotFoundException("User $username not found")
     }
 
     @RequestMapping("/users")
