@@ -5,7 +5,7 @@ Vad?
 En applikation som listar gokartar för en person. :)
 
 Hur?
-Språk: 				Enbart Kotlin
+Programspråk:		Kotlin (enbart, ingen Java!)
 Gränssnitt:			Rest
 Databasstöd:		Ja
 Databas:			H2 in memory
