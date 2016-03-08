@@ -34,5 +34,5 @@ dependencies {
 }
 
 springBoot {
-    mainClass = 'nu.westlin.kartrepo'
+    mainClass = 'nu.westlin.kartrepo.ApplicationKt'
 }
