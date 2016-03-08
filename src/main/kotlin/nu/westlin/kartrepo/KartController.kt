@@ -1,18 +1,23 @@
 package nu.westlin.kartrepo
 
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 import javax.servlet.http.HttpServletResponse
 
 @RestController
-class KartController {
+class KartController @Autowired constructor(val kartRepository: KartRepository) {
+
 
     @RequestMapping("/user")
     fun greeting(@RequestParam(value = "username", defaultValue = "pwestlin") username: String, response: HttpServletResponse): User {
-        if (username == "pwestlin")
-            return User(username, "Peter", "Westlin")
-        else
+        val user: User? = kartRepository.load(username)
+
+        if (user == null) {
             throw NotFoundException("User $username not found")
+        }
+
+        return user
 
     }
 
