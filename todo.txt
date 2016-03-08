@@ -1,0 +1,12 @@
+Varför?
+Lära mig Kotlin.
+
+Vad?
+En applikation som listar gokartar för en person. :)
+
+Hur?
+Språk: 				Enbart Kotlin
+Gränssnitt:			Rest
+Databasstöd:		Ja
+Databas:			H2 in memory
+Applikationstyp:	Command line, Spring Boot.
