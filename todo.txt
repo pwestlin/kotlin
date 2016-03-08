@@ -9,4 +9,10 @@ Programspråk:		Kotlin (enbart, ingen Java!)
 Gränssnitt:			Rest
 Databasstöd:		Ja
 Databas:			H2 in memory
+Databasaccess:		JDBC
 Applikationstyp:	Command line, Spring Boot.
+Byggverktyg:		Gradle
+
+
+Saker att testa:
+-Något annat än JDBC för databasanrop (ex https://github.com/JetBrains/Exposed).
