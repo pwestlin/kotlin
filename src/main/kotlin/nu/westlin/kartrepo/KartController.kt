@@ -1,28 +1,45 @@
 package nu.westlin.kartrepo
 
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.dao.IncorrectResultSizeDataAccessException
 import org.springframework.http.HttpStatus
+import org.springframework.jdbc.core.JdbcOperations
 import org.springframework.web.bind.annotation.*
-import javax.servlet.http.HttpServletResponse
 
 @RestController
-class KartController @Autowired constructor(val kartRepository: KartRepository) {
+open class KartController @Autowired constructor(val kartRepository: KartRepository, val jdbcOperations: JdbcOperations) {
+
+    init {
+        println("jdbcOperations = ${jdbcOperations}")
+        println("kartRepository = ${kartRepository}")
+        println("kartRepository.jdbcOperations = ${kartRepository.jdbcOperations}")
+        // Jag får inte jdbcOperations att sättas automatiskt :(
+        kartRepository.jdbcOperations = jdbcOperations
+        println("kartRepository.jdbcOperations = ${kartRepository.jdbcOperations}")
+    }
 
 
     @RequestMapping("/user")
-    fun greeting(@RequestParam(value = "username", defaultValue = "pwestlin") username: String, response: HttpServletResponse): User {
-        return kartRepository.load(username) ?: throw NotFoundException("User $username not found")
+    fun greeting(@RequestParam(value = "username", defaultValue = "pwestlin") username: String): Driver {
+        return kartRepository.load(username)
     }
 
     @RequestMapping("/users")
-    fun greeting(): List<User> {
-        return listOf(User("pwestlin", "Peter", "Westlin"))
+    fun greeting(): List<Driver> {
+        return listOf(Driver("pwestlin", "Peter", "Westlin"))
     }
 
-    @ExceptionHandler(Exception::class)
+    @ExceptionHandler(NotFoundException::class)
     @ResponseBody
     @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    fun handleException(e: NotFoundException, response: HttpServletResponse): ErrorResource {
+    fun notFoundException(e: NotFoundException): ErrorResource {
+        return ErrorResource(HttpStatus.NOT_FOUND.value(), "Could not find resource")
+    }
+
+    @ExceptionHandler(IncorrectResultSizeDataAccessException::class)
+    @ResponseBody
+    @ResponseStatus(value = HttpStatus.NOT_FOUND)
+    fun incorrectResultSizeDataAccessException(e: IncorrectResultSizeDataAccessException): ErrorResource {
         return ErrorResource(HttpStatus.NOT_FOUND.value(), "Could not find resource")
     }
 }

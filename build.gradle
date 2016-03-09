@@ -12,6 +12,7 @@ buildscript {
     }
 }
 
+apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
 apply plugin: 'kotlin' // Required for Kotlin integration
@@ -30,7 +31,20 @@ repositories {
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version" // Required for Kotlin integration
     compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-jdbc'
+    compile "org.springframework:spring-tx"
+    compile "org.springframework:spring-jdbc"
+    compile "com.h2database:h2:1.4.191"
+    compile "javax.inject:javax.inject:1"
+    compile "org.springframework.boot:spring-boot-starter-actuator"
+    compile "com.google.guava:guava:19.0"
+
+    compile "org.springframework.boot:spring-boot-devtools"
+
+
     testCompile 'junit:junit'
+
+
 }
 
 springBoot {

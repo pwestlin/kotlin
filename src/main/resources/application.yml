@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: kartrepo
+
+  jackson:
+    serialization:
+      indent_output: true
+
+  datasource:
+    url: jdbc:h2:mem:test;MODE=PostgreSQL;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    initialSize: 1
+    max-active: 5
+    maxIdle: 5
+    initialize: false
+
+info.app:
+  name: ${archivesBaseName}
+  description: ${description}
+  version: ${version}
+
+
+endpoints.health.sensitive: false
+
+#logging.path: ./logs
+
+
+#embedded.server.tomcat.accesslog.enabled: true
