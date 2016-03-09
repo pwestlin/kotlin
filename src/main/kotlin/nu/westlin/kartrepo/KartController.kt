@@ -3,21 +3,10 @@ package nu.westlin.kartrepo
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.IncorrectResultSizeDataAccessException
 import org.springframework.http.HttpStatus
-import org.springframework.jdbc.core.JdbcOperations
 import org.springframework.web.bind.annotation.*
 
 @RestController
-open class KartController @Autowired constructor(val kartRepository: KartRepository, val jdbcOperations: JdbcOperations) {
-
-    init {
-        println("jdbcOperations = ${jdbcOperations}")
-        println("kartRepository = ${kartRepository}")
-        println("kartRepository.jdbcOperations = ${kartRepository.jdbcOperations}")
-        // Jag får inte jdbcOperations att sättas automatiskt :(
-        kartRepository.jdbcOperations = jdbcOperations
-        println("kartRepository.jdbcOperations = ${kartRepository.jdbcOperations}")
-    }
-
+open class KartController @Autowired constructor(val kartRepository: KartRepository) {
 
     @RequestMapping("/driver")
     fun greeting(@RequestParam(value = "username", defaultValue = "pwestlin") username: String): Driver {
