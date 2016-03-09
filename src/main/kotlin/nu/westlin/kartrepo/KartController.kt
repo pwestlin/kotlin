@@ -19,14 +19,14 @@ open class KartController @Autowired constructor(val kartRepository: KartReposit
     }
 
 
-    @RequestMapping("/user")
+    @RequestMapping("/driver")
     fun greeting(@RequestParam(value = "username", defaultValue = "pwestlin") username: String): Driver {
         return kartRepository.load(username)
     }
 
-    @RequestMapping("/users")
+    @RequestMapping("/drivers")
     fun greeting(): List<Driver> {
-        return listOf(Driver("pwestlin", "Peter", "Westlin"))
+        return kartRepository.all()
     }
 
     @ExceptionHandler(NotFoundException::class)

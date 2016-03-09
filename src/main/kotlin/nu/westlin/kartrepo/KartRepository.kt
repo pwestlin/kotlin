@@ -21,10 +21,10 @@ open class KartRepository @Autowired constructor(var jdbcOperations: JdbcOperati
     }
 
     fun load(alias: String): Driver {
-        return jdbcOperations.queryForObject("select alias,firstname,lastname from driver where alias=?", UserRowMapper(), alias)
+        return jdbcOperations.queryForObject("select alias,firstname,lastname from driver where alias=?", DriverRowMapper(), alias)
     }
 
-    class UserRowMapper : RowMapper<Driver> {
+    class DriverRowMapper : RowMapper<Driver> {
 
         @Throws(SQLException::class)
         override fun mapRow(rs: ResultSet, rowNum: Int): Driver {
@@ -35,6 +35,10 @@ open class KartRepository @Autowired constructor(var jdbcOperations: JdbcOperati
             )
         }
 
+    }
+
+    fun all(): List<Driver> {
+        return jdbcOperations.query<Driver>("select alias,firstname,lastname from driver", DriverRowMapper())
     }
 
 }

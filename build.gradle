@@ -39,6 +39,7 @@ dependencies {
     compile "com.google.guava:guava:19.0"
 
     compile "org.springframework.boot:spring-boot-devtools"
+    compile 'org.liquibase:liquibase-core'
 
 
     testCompile 'junit:junit'
