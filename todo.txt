@@ -13,6 +13,9 @@ Databasaccess:		JDBC
 Applikationstyp:	Command line, Spring Boot.
 Byggverktyg:		Gradle
 
+Saker kvar:
+-enhetstester (även JDBC)
 
 Saker att testa:
 -Något annat än JDBC för databasanrop (ex https://github.com/JetBrains/Exposed).
+    Görs i egen branch.
