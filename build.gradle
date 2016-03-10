@@ -43,7 +43,9 @@ dependencies {
 
 
     testCompile 'junit:junit'
-
+    testCompile "org.springframework.boot:spring-boot-starter-test"
+    testCompile 'org.jetbrains.kotlin:kotlin-test-junit:1.0.0'
+    testCompile 'org.hamcrest:hamcrest-junit:2.0.0.0'
 
 }
 

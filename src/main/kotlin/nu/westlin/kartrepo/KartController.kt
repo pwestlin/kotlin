@@ -1,12 +1,12 @@
 package nu.westlin.kartrepo
 
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.dao.IncorrectResultSizeDataAccessException
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
+import javax.inject.Inject
 
 @RestController
-open class KartController @Autowired constructor(val kartRepository: KartRepository) {
+open class KartController @Inject constructor(val kartRepository: KartRepository) {
 
     @RequestMapping("/driver")
     fun greeting(@RequestParam(value = "username", defaultValue = "pwestlin") username: String): Driver {

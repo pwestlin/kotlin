@@ -1,15 +1,15 @@
 package nu.westlin.kartrepo
 
-import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.jdbc.JdbcUpdateAffectedIncorrectNumberOfRowsException
 import org.springframework.jdbc.core.JdbcOperations
 import org.springframework.jdbc.core.RowMapper
 import org.springframework.stereotype.Repository
 import java.sql.ResultSet
 import java.sql.SQLException
+import javax.inject.Inject
 
 @Repository
-open class JdbcKartRepository @Autowired constructor(var jdbcOperations: JdbcOperations) : KartRepository {
+open class JdbcKartRepository @Inject constructor(var jdbcOperations: JdbcOperations) : KartRepository {
 
     override fun store(user: Driver) {
         val rows: Int = jdbcOperations.update("insert into driver(alias, firstname, lastname) values(?,?,?)",
