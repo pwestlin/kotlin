@@ -13,6 +13,7 @@ open class Application {
         repository.store(Driver("pwestlin", "Peter", "Westlin"))
         repository.store(Driver("awestlin", "Adam", "Westlin"))
         repository.store(Driver("fwestlin", "Felix", "Westlin"))
+        repository.store(Driver("rpeterson", "Ronnie", "Peterson"))
     }
 
 }
