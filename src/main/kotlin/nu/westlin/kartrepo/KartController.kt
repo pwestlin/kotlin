@@ -9,7 +9,7 @@ import javax.inject.Inject
 open class KartController @Inject constructor(val kartRepository: KartRepository) {
 
     @RequestMapping("/driver")
-    fun greeting(@RequestParam(value = "username", defaultValue = "pwestlin") username: String): Driver {
+    fun greeting(@RequestParam(value = "alias", defaultValue = "pwestlin") username: String): Driver {
         return kartRepository.load(username)
     }
 

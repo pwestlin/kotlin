@@ -24,6 +24,10 @@ jar {
 }
 
 repositories {
+    maven {
+        url "http://dl.bintray.com/kotlin/exposed"
+    }
+
     jcenter()
 }
 
@@ -40,6 +44,10 @@ dependencies {
 
     compile "org.springframework.boot:spring-boot-devtools"
     compile 'org.liquibase:liquibase-core'
+
+    compile('org.jetbrains.exposed:exposed:0.3.2') {
+        exclude module: 'slf4j-log4j12'
+    }
 
 
     testCompile 'junit:junit'

@@ -1,5 +1,6 @@
 package nu.westlin.kartrepo
 
+import org.springframework.context.annotation.Profile
 import org.springframework.jdbc.JdbcUpdateAffectedIncorrectNumberOfRowsException
 import org.springframework.jdbc.core.JdbcOperations
 import org.springframework.jdbc.core.RowMapper
@@ -8,12 +9,12 @@ import java.sql.ResultSet
 import java.sql.SQLException
 import javax.inject.Inject
 
-@Repository
+//@Repository
 open class JdbcKartRepository @Inject constructor(var jdbcOperations: JdbcOperations) : KartRepository {
 
-    override fun store(user: Driver) {
+    override fun store(driver: Driver) {
         val rows: Int = jdbcOperations.update("insert into driver(alias, firstname, lastname) values(?,?,?)",
-                user.alias, user.firstname, user.lastname)
+                driver.alias, driver.firstname, driver.lastname)
         if (rows != 1)
             throw JdbcUpdateAffectedIncorrectNumberOfRowsException("Expected 1 row, got $rows", 0, rows)
     }

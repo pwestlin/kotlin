@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean
 open class Application {
 
     @Bean
-    open fun init(repository: JdbcKartRepository) = CommandLineRunner {
+    open fun init(repository: KartRepository) = CommandLineRunner {
         repository.store(Driver("pwestlin", "Peter", "Westlin"))
         repository.store(Driver("awestlin", "Adam", "Westlin"))
         repository.store(Driver("fwestlin", "Felix", "Westlin"))
