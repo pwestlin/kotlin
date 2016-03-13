@@ -51,10 +51,10 @@ open class ExposedDslKartRepository @Inject constructor(val datasourceUrl: Strin
         return drivers
     }
 
+    object Drivers : Table("driver") {
+        val alias = varchar("alias", 20).primaryKey()
+        val firstname = varchar("firstname", 36)
+        val lastname = varchar("lastname", 36)
+    }
 }
 
-object Drivers : Table("driver") {
-    val alias = varchar("alias", 20).primaryKey()
-    val firstname = varchar("firstname", 36)
-    val lastname = varchar("lastname", 36)
-}
