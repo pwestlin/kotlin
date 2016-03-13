@@ -1,6 +1,5 @@
 package nu.westlin.kartrepo
 
-import org.springframework.beans.factory.annotation.Value
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.core.env.Environment
@@ -20,18 +19,12 @@ open class DatabaseConfiguration {
     @Inject
     lateinit internal var environment: Environment
 
-    @Value("\${spring.datasource.url}")
-    lateinit internal var datasourceUrl: String
-
-    @Value("\${spring.datasource.driver-class-name}")
-    lateinit internal var driverClassName: String
-
     @Bean
     open fun kartRepository(): KartRepository {
         if (this.environment.acceptsProfiles(Profiles.EXPOSED_DSL.name)) {
-            return ExposedDslKartRepository(datasourceUrl, driverClassName, dataSource)
+            return ExposedDslKartRepository(dataSource)
         } else if (this.environment.acceptsProfiles(Profiles.EXPOSED_DAO.name)) {
-            throw NotImplementedError("Not implemented")
+            return ExposedDaoKartRepository(dataSource)
         } else {
             return JdbcKartRepository(jdbcOperations())
         }
